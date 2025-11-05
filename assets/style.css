@@ -1,0 +1,99 @@
+/* ===== Nanak Cakes – Soft Bakery Theme ===== */
+:root{
+  --bg:#fff9fb;           /* soft blush */
+  --ink:#2d2a32;          /* deep text */
+  --muted:#6b6672;        /* secondary text */
+  --brand:#ff6fa1;        /* pink accent */
+  --brand-ink:#3b0d1c;    /* dark contrast for buttons */
+  --card:#ffffff;         /* cards */
+  --border:#f0e6ea;       /* subtle borders */
+  --ring:#ffd1e2;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  background:
+    radial-gradient(1200px 1200px at -10% -10%, #ffeaf1 0, transparent 50%),
+    radial-gradient(1000px 1000px at 110% -20%, #fff1f6 0, transparent 60%),
+    var(--bg);
+  color:var(--ink);
+  line-height:1.45;
+}
+
+/* layout */
+.wrap{max-width:1100px;margin:0 auto;padding:20px}
+header{
+  position:sticky; top:0; z-index:10;
+  backdrop-filter:saturate(150%) blur(8px);
+  background:#ffffffcc;
+  border-bottom:1px solid var(--border);
+}
+nav{display:flex; align-items:center; justify-content:space-between; gap:14px}
+.brand{
+  font-weight:900; letter-spacing:.2px;
+  background:linear-gradient(90deg,#ff6fa1,#ff9ac0);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  font-size:clamp(18px,3.2vw,24px);
+}
+.muted{color:var(--muted)}
+
+main{padding:28px 0 46px}
+.grid{display:grid; grid-template-columns:1fr; gap:18px}
+@media (min-width:900px){ .grid{ grid-template-columns:1.25fr .75fr } }
+
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:22px;
+  box-shadow: 0 10px 30px rgba(255, 111, 161, 0.07), 0 2px 8px rgba(0,0,0,.03);
+}
+
+h1{font-size:clamp(28px,4.6vw,42px); margin:8px 0 10px}
+h2{font-size:clamp(18px,3.2vw,22px); margin:6px 0 12px}
+a{color:var(--brand); text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* controls */
+.controls{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:12px 0 8px}
+@media (min-width:700px){ .controls{ grid-template-columns:repeat(3,1fr) } }
+label{display:grid; gap:6px; font-weight:600; color:#4a4650}
+
+select,input[type="text"],input[type="datetime-local"]{
+  width:100%; padding:12px 14px; border-radius:12px;
+  border:1px solid var(--border); background:#fff; color:var(--ink);
+  outline:none; box-shadow:0 0 0 0 transparent; transition:box-shadow .15s ease, border-color .15s ease;
+}
+select:focus, input:focus{ border-color:var(--ring); box-shadow:0 0 0 4px rgba(255,111,161,.15) }
+
+.chk{display:flex; align-items:center; gap:10px; padding-top:24px}
+
+.price{
+  margin-top:8px;
+  font-weight:900; font-size:clamp(22px,4vw,30px);
+  background:linear-gradient(90deg,#ff6fa1,#ffb3cd);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+
+.btn{
+  display:inline-block; padding:12px 18px; border-radius:14px;
+  background:var(--brand); color:#fff; font-weight:900; letter-spacing:.3px;
+  border:0; cursor:pointer; box-shadow:0 8px 20px rgba(255,111,161,.25);
+  transition:transform .06s ease, box-shadow .15s ease, filter .15s ease;
+}
+.btn:hover{ transform:translateY(-1px); filter:saturate(110%) }
+.btn:active{ transform:translateY(0) }
+
+/* table */
+.table{width:100%; border-collapse:separate; border-spacing:0; margin-top:10px}
+.table th,.table td{padding:10px 12px; border-bottom:1px solid var(--border); text-align:left}
+.table thead th{font-size:.95rem; color:#4a4650}
+.table tbody tr:hover{ background:#fff6fa }
+
+/* policy / aside */
+.policy h3{margin-top:18px}
+
+/* footer */
+footer{border-top:1px solid var(--border); color:#8b8592; padding:18px}
