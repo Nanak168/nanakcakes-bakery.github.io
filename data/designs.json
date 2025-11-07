@@ -1,0 +1,17 @@
+[
+  {
+    "slug": "flowerly-yours",
+    "name": "Flowerly Yours",
+    "image": "images/flowerly-yours.jpg",
+    "surcharge": 15,
+    "description": "Fresh-cream cake with red roses. Hand-piped finish."
+  },
+
+  {
+    "slug": "the-classic",
+    "name": "The Classic",
+    "image": "images/the-classic.jpg",
+    "surcharge": 10,
+    "description": "Simple border, clean white finish. Perfect for message cakes."
+  }
+]
