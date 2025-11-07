@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>Design Editor · Nanak Cakes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="assets/style.css"/>
+  <style>.card{max-width:880px;margin:20px auto}</style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="card">
+      <h1>Add / Edit a Design</h1>
+      <p class="muted">Fill this form, then copy the JSON into <code>data/designs.json</code> and upload your image into <code>/images/</code> on GitHub.</p>
+
+      <div class="controls">
+        <label>Design name <input id="name" placeholder="Flowerly Yours"/></label>
+        <label>Surcharge (flat, AU$) <input id="surcharge" type="number" step="0.5" placeholder="15"/></label>
+        <label>Description <input id="desc" placeholder="Short description"/></label>
+        <label>Image file name (jpg/png) <input id="imgName" placeholder="flowerly-yours.jpg"/></label>
+        <label>Preview image (optional)
+          <input id="imgFile" type="file" accept="image/*"/>
+        </label>
+      </div>
+
+      <div style="display:flex;gap:16px;align-items:flex-start">
+        <img id="preview" style="width:260px;height:auto;border:1px solid #eee;border-radius:12px;object-fit:cover" alt="preview"/>
+        <div style="flex:1">
+          <h3>JSON to copy into <code>data/designs.json</code></h3>
+          <pre id="json" style="white-space:pre-wrap;background:#fafafa;border:1px solid #eee;border-radius:12px;padding:12px"></pre>
+        </div>
+      </div>
+
+      <p class="muted" style="margin-top:10px">
+        Steps:
+        <ol>
+          <li>Save your image on your computer with the exact file name shown above (e.g. <code>images/flowerly-yours.jpg</code>).</li>
+          <li>On GitHub ➜ your repo ➜ <strong>Add file → Upload files</strong> ➜ drop the image into <code>/images/</code>.</li>
+          <li>Open <code>data/designs.json</code> in GitHub, click the pencil, paste the JSON block into the array.</li>
+          <li><strong>Commit</strong> to main. Refresh your public site.</li>
+        </ol>
+      </p>
+    </section>
+  </main>
+
+  <script>
+    const $=s=>document.querySelector(s);
+    const slugify=s=>s.toLowerCase().trim()
+      .replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+
+    function build(){
+      const name = $('#name').value.trim() || 'New Design';
+      const surcharge = Number($('#surcharge').value||0);
+      const desc = $('#desc').value.trim();
+      let img = $('#imgName').value.trim();
+      const slug = slugify(name);
+      if(!img) img = `${slug}.jpg`;
+      $('#imgName').value = img;
+
+      const block = {
+        slug, name,
+        image: `images/${img}`,
+        surcharge,
+        description: desc
+      };
+      $('#json').textContent = JSON.stringify(block,null,2);
+    }
+
+    ['name','surcharge','desc','imgName'].forEach(id=>{
+      $( '#'+id ).addEventListener('input', build);
+    });
+
+    $('#imgFile').addEventListener('change', e=>{
+      const f = e.target.files[0];
+      if (!f) return;
+      const reader = new FileReader();
+      reader.onload = ev=>{ $('#preview').src = ev.target.result; };
+      reader.readAsDataURL(f);
+      if (!$('#imgName').value) {
+        const ext = (f.name.match(/\.(jpg|jpeg|png)$/i)||['','.jpg'])[0].toLowerCase().replace('.', '') || 'jpg';
+        const suggested = slugify($('#name').value||'new-design') + '.' + ext;
+        $('#imgName').value = suggested;
+      }
+      build();
+    });
+
+    build();
+  </script>
+</body>
+</html>
