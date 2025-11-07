@@ -2,82 +2,58 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Cake Pricing & WhatsApp Orders</title>
+  <title>Nanak Eggless Cakes & Bakery · Price calculator · WhatsApp checkout</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="assets/style.css" />
 </head>
 <body>
-  <header>
-    <div class="wrap">
-      <nav>
-        <div class="brand" id="brand">Bakery</div>
-        <div class="muted">Price calculator · WhatsApp checkout</div>
-      </nav>
+<header>
+  <div class="wrap">
+    <div class="brand" id="brand">Nanak Eggless Cakes & Bakery</div>
+    <nav class="muted">Price calculator · WhatsApp checkout</nav>
+  </div>
+</header>
+
+<main class="wrap grid">
+  <section class="card">
+    <img id="heroImg" class="hero" alt="">
+    <h1 id="heroTitle">Custom Cake Pricing</h1>
+    <p id="heroDesc" class="muted"></p>
+
+    <div class="controls">
+      <label>Design <select id="design"></select></label>
+      <label>Flavour <select id="flavour"></select></label>
+      <label>Size <select id="size"></select></label>
+      <label>Pickup date & time <input type="datetime-local" id="pickup" /></label>
+      <label>Name on cake <input type="text" id="name" placeholder="e.g., Happy Birthday Viraj" /></label>
+      <label>Send to location <select id="location"></select></label>
     </div>
-  </header>
 
-  <main class="wrap grid">
-    <section class="card">
-      <h1>Custom Cake Pricing</h1>
-      <p class="muted">Pick a flavour, size and (optional) design upgrade. Price updates instantly. Click WhatsApp to send your order details—no online payment.</p>
-      <div class="controls">
-        <label>
-          Flavour
-          <select id="flavour"></select>
-        </label>
-        <label>
-          Size
-          <select id="size"></select>
-        </label>
-        <label class="chk">
-          <input type="checkbox" id="design" /> Design upgrade
-        </label>
-        <label>
-          Pickup date & time (optional)
-          <input type="datetime-local" id="pickup" />
-        </label>
-        <label>
-          Name on cake (optional)
-          <input type="text" id="name" placeholder="e.g., Happy Birthday Viraj" />
-        </label>
-        <label>
-          Send to location
-          <select id="location"></select>
-        </label>
-      </div>
+    <div class="price" id="price">$0.00</div>
+    <div class="muted" id="baseInfo"></div>
 
-      <div class="price" id="price">$0.00</div>
-      <div class="muted" id="baseInfo"></div>
-      <p style="margin-top:10px">
-        <a id="waBtn" class="btn" href="#">Order via WhatsApp</a>
-      </p>
+    <p style="margin-top:10px"><a id="waBtn" class="btn" href="#">Order via WhatsApp</a></p>
 
-      <h2>Per‑kg rates by flavour</h2>
-      <table class="table" id="rateTable">
-        <thead><tr><th>Flavour</th><th>Category</th><th>AUD per kg</th></tr></thead>
-        <tbody>
-          <!-- JS injects rows -->
-        </tbody>
-      </table>
-    </section>
+    <h2>Per-kg rates by flavour</h2>
+    <table class="table" id="rateTable">
+      <thead><tr><th>Flavour</th><th>Category</th><th>AUD per kg</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </section>
 
-    <aside class="card policy">
-      <h2>How it works</h2>
-      <ol>
-        <li>Use the calculator to get your price.</li>
-        <li>Click <strong>Order via WhatsApp</strong> and select your pickup location.</li>
-        <li>We’ll confirm availability and finalise details by message.</li>
-      </ol>
+  <aside class="card">
+    <h2>How it works</h2>
+    <ol>
+      <li>Pick a design, flavour & size. The price updates instantly.</li>
+      <li>Click <strong>Order via WhatsApp</strong> and select your pickup location.</li>
+      <li>We’ll confirm availability and finalise details by message.</li>
+    </ol>
+    <div id="policy"></div>
+  </aside>
+</main>
 
-      <div id="policy"></div>
-    </aside>
-  </main>
+<footer class="wrap muted">© 2025 <span id="footerBrand"></span></footer>
 
-  <footer>
-    <div class="wrap">© <span id="y"></span> <span id="footerBrand"></span></div>
-  </footer>
-
-  <script type="module" src="assets/app.js"></script>
-  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+<script type="module" src="assets/app.js"></script>
 </body>
 </html>
